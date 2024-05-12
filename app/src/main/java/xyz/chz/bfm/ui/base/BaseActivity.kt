@@ -22,8 +22,8 @@ open class BaseActivity : AppCompatActivity(), IMakeDialog {
             val df = MakeDialog(
                 StatusConnection.Error.str,
                 getString(R.string.module_not_found),
-                true,
-                false
+                isClick=true,
+                canCancel=false
             )
             df.listener = this
             df.show(supportFragmentManager, "")
@@ -35,8 +35,8 @@ open class BaseActivity : AppCompatActivity(), IMakeDialog {
                         getString(R.string.update_module),
                         ModuleManager.moduleVersionCode.toInt()
                     ),
-                    true,
-                    false
+                    isClick=true,
+                    canCancel=false
                 )
                 df.listener = this
                 df.show(supportFragmentManager, "")

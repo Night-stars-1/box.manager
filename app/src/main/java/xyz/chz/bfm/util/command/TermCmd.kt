@@ -46,7 +46,12 @@ object TermCmd {
 
     val linkDBClash: String
         get() {
-            return execRootCmd("grep 'external-controller:' ${path}/clash/config.yaml | awk '{print $2}'")
+            val link = execRootCmd("grep 'external-controller:' ${path}/clash/config.yaml | awk '{print $2}'")
+            return if (link.startsWith(":")) {
+                "127.0.0.1$link"
+            } else {
+                link
+            }
         }
 
 

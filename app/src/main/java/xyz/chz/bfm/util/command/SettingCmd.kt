@@ -1,11 +1,20 @@
 package xyz.chz.bfm.util.command
 
+import android.util.Log
 import xyz.chz.bfm.util.terminal.TerminalHelper.execRootCmd
+import xyz.chz.bfm.util.terminal.TerminalHelper.getYaml
+import xyz.chz.bfm.util.terminal.TerminalHelper.saveYamlToFile
 
 object SettingCmd {
+    private const val TAG = "BoxForRoot.SettingCmd"
+    private const val ROOTYAMLPATH = "/data/adb/box/clash/config.yaml"
+
+    private val CLASHDATA: MutableMap<String, Any> by lazy { getYaml(ROOTYAMLPATH) }
 
     val networkMode: String
-        get() = execRootCmd("grep 'network_mode=' /data/adb/box/settings.ini | sed 's/^.*=//' | sed 's/\"//g'")
+        get(): String{
+            return execRootCmd("grep 'network_mode=' /data/adb/box/settings.ini | sed 's/^.*=//' | sed 's/\"//g'")
+        }
 
     fun setNetworkMode(mode: String): String {
         return execRootCmd("sed -i 's/network_mode=.*/network_mode=\"$mode\"/;' /data/adb/box/settings.ini")
@@ -61,10 +70,11 @@ object SettingCmd {
     }
 
     val redirHost: Boolean
-        get() = "redir-host" == execRootCmd("grep 'enhanced-mode:' /data/adb/box/clash/config.yaml | awk '{print $2}'")
+        get() = "redir-host" == CLASHDATA["enhanced-mode"].toString()
 
-    fun setRedirHost(mode: String): String {
-        return execRootCmd("sed -i 's/enhanced-mode:.*/enhanced-mode: $mode/;' /data/adb/box/clash/config.yaml")
+    fun setRedirHost(mode: String) {
+        CLASHDATA["enhanced-mode"] = mode
+        saveYamlToFile(CLASHDATA, ROOTYAMLPATH)
     }
 
     val quic: Boolean
@@ -75,31 +85,44 @@ object SettingCmd {
     }
 
     val unified: Boolean
-        get() = "true" == execRootCmd("grep 'unified-delay:' /data/adb/box/clash/config.yaml | awk '{print $2}'")
+        get() = "true" == CLASHDATA["unified-delay"].toString()
 
-    fun setUnified(mode: String): String {
-        return execRootCmd("sed -i 's/unified-delay:.*/unified-delay: $mode/;' /data/adb/box/clash/config.yaml")
+    fun setUnified(mode: String) {
+        CLASHDATA["unified-delay"] = mode
+        saveYamlToFile(CLASHDATA, ROOTYAMLPATH)
     }
 
     val geodata: Boolean
-        get() = "true" == execRootCmd("grep 'geodata-mode:' /data/adb/box/clash/config.yaml | awk '{print $2}'")
+        get() = "true" == CLASHDATA["geodata-mode"].toString()
 
-    fun setGeodata(mode: String): String {
-        return execRootCmd("sed -i 's/geodata-mode:.*/geodata-mode: $mode/;' /data/adb/box/clash/config.yaml")
+    fun setGeodata(mode: String) {
+        CLASHDATA["geodata-mode"] = mode
+        saveYamlToFile(CLASHDATA, ROOTYAMLPATH)
     }
 
     val tcpCon: Boolean
-        get() = "true" == execRootCmd("grep 'tcp-concurrent:' /data/adb/box/clash/config.yaml | awk '{print $2}'")
+        get() = "true" == CLASHDATA["tcp-concurrent"].toString()
 
-    fun setTcpCon(mode: String): String {
-        return execRootCmd("sed -i 's/tcp-concurrent:.*/tcp-concurrent: $mode/;' /data/adb/box/clash/config.yaml")
+    fun setTcpCon(mode: String) {
+        CLASHDATA["tcp-concurrent"] = mode
+        saveYamlToFile(CLASHDATA, ROOTYAMLPATH)
     }
 
     val sniffer: Boolean
-        get() = "true" == execRootCmd("grep -C 1 'sniffer:' /data/adb/box/clash/config.yaml  | grep 'enable:' | awk '{print $2}'")
+        get() = "true" == (CLASHDATA["sniffer"] as? Map<*, *>)?.get("enable").toString()
 
-    fun setSniffer(mode: String): String {
-        return execRootCmd("sed -i '/^sniffer:/{n;s/enable:.*/enable: $mode/;}' /data/adb/box/clash/config.yaml")
+    fun setSniffer(mode: String) {
+        val sniffer = CLASHDATA.getOrPut("sniffer") { mutableMapOf<String, Any>() }
+        // 检查 sniffer 是否确实是 MutableMap 类型
+        if (sniffer is MutableMap<*, *>) {
+            @Suppress("UNCHECKED_CAST")
+            val snifferMap = sniffer as MutableMap<String, Any>
+            snifferMap["enable"] = mode
+            saveYamlToFile(CLASHDATA, ROOTYAMLPATH)
+        } else {
+            // 如果 sniffer 不是一个 MutableMap，则记录错误或抛出异常
+            Log.i(TAG, "Error: 'sniffer' in CLASHDATA is not a MutableMap")
+        }
     }
 
     val ipv6: Boolean
@@ -110,10 +133,11 @@ object SettingCmd {
     }
 
     val findProc: String
-        get() = execRootCmd("grep 'find-process-mode:' /data/adb/box/clash/config.yaml | awk '{print $2}'")
+        get() = CLASHDATA["find-process-mode"].toString()
 
-    fun setFindProc(mode: String): String {
-        return execRootCmd("sed -i 's/find-process-mode:.*/find-process-mode: $mode/;' /data/adb/box/clash/config.yaml")
+    fun setFindProc(mode: String) {
+        CLASHDATA["find-process-mode"] = mode
+        saveYamlToFile(CLASHDATA, ROOTYAMLPATH)
     }
 
     val clashType: String

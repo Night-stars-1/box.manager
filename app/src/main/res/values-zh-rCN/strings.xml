@@ -1,0 +1,78 @@
+<resources>
+    <!-- Apps -->
+    <string name="apps_count_list">在模式 %2$s 下添加了 %1$d 个应用程序</string>
+    <string name="no_apps_count_list">%s 模式</string>
+    <string name="for_clash_only">redir-host 仅适用于 clash</string>
+    <string name="module_not_found">找不到模块</string>
+    <string name="update_module">请升级您的模块:)\n最低版本：%d</string>
+    <string name="module_repo_url">https://github.com/taamarin/box_for_magisk</string>
+    <string name="release_repo_url">https://github.com/taamarin/box_for_magisk/releases</string>
+
+    <string name="success">成功</string>
+    <string name="failed">失败</string>
+    <string name="home">主页</string>
+    <string name="dashboard">仪表板</string>
+    <string name="app">应用列表</string>
+
+    <!-- Setting Dialog-->
+    <string name="select_core">选择核心：</string>
+    <string name="clash_settings">clash设置：</string>
+    <string name="find_procces">查找进程</string>
+    <string name="clash_options">clash选项</string>
+    <string name="unified_delay">统一延迟[meta]</string>
+    <string name="sniffer">嗅探器[meta]</string>
+    <string name="subscription">订阅</string>
+    <string name="module_settings">模块设置：</string>
+    <string name="cgroup_settings">组：</string>
+    <string name="memcg">记忆库</string>
+    <string name="blkio">BLKIO</string>
+    <string name="cpuset">中央处理器组</string>
+    <string name="port_detect">端口检测</string>
+    <string name="crontab">定时任务</string>
+    <string name="networkmode">网络模式</string>
+    <string name="proxymode">代理模式</string>
+    <string name="check_module">检查模块</string>
+    <string name="myip">我的IP</string>
+    <string name="setting">环境</string>
+
+    <!--Setting Dialog-->
+    <string-array name="core_array">
+        <item>冲突</item>
+        <item>唱盒</item>
+        <item>X射线</item>
+        <item>飞飞</item>
+    </string-array>
+
+    <string-array name="proc_array">
+        <item>离开</item>
+        <item>严格的</item>
+        <item>总是</item>
+    </string-array>
+
+    <string-array name="clash_core_array">
+        <item>优质的</item>
+        <item>米霍莫</item>
+    </string-array>
+
+    <string-array name="network_array">
+        <item>代理服务器</item>
+        <item>重定向</item>
+        <item>提高</item>
+        <item>混合的</item>
+        <item>再次</item>
+    </string-array>
+
+    <string-array name="proxy_array">
+        <item>白名单</item>
+        <item>黑名单</item>
+    </string-array>
+
+    <!--UPDATER CORE-->
+    <string name="updater_core">更新核心</string>
+    <string name="update_mihomo_latest">mihomo 有最新版本</string>
+    <string name="update_available_mihomo">更新可用的 mihomo</string>
+    <string name="update_mihomo_failed">无法获得存储库clash，请检查您的互联网连接</string>
+    <string name="update_mihomo_failed2">clash下载失败</string>
+    <string name="check_clash">检查 mihomo</string>
+
+</resources>

@@ -1,10 +1,10 @@
 <resources>
     <!-- Apps -->
-    <string name="app_name">BoxForRoot</string>
-    <string name="min_module_vrsion">20230814</string>
+    <string name="app_name" translatable="false">BoxForRoot</string>
+    <string name="min_module_vrsion" translatable="false">20230814</string>
     <string name="apps_count_list">added %d apps in mode %s</string>
     <string name="no_apps_count_list">mode %s</string>
-    <string name="ok">OK</string>
+    <string name="ok" translatable="false">OK</string>
     <string name="for_clash_only">clash only work on redir-host</string>
     <string name="module_not_found">Module Not Found</string>
     <string name="update_module">Please upgrade ur Module :)\nMinimum ver: %d</string>
@@ -24,19 +24,19 @@
     <string name="clash_options">clash options</string>
     <string name="unified_delay">unified delay[meta]</string>
     <string name="sniffer">sniffer[meta]</string>
-    <string name="redir_host">redir-host[meta]</string>
-    <string name="geodata_meta">geodata[meta]</string>
+    <string name="redir_host" translatable="false">redir-host[meta]</string>
+    <string name="geodata_meta" translatable="false">geodata[meta]</string>
     <string name="subscription">subscription</string>
     <string name="module_settings">module settings:</string>
     <string name="cgroup_settings">cgroup:</string>
     <string name="memcg">memcg</string>
     <string name="blkio">blkio</string>
     <string name="cpuset">cpuset</string>
-    <string name="quic">quic</string>
-    <string name="ipv6">ipv6</string>
+    <string name="quic" translatable="false">quic</string>
+    <string name="ipv6" translatable="false">ipv6</string>
     <string name="port_detect">port detect</string>
     <string name="crontab">crontab</string>
-    <string name="geox">geox</string>
+    <string name="geox" translatable="false">geox</string>
     <string name="networkmode">NetworkMode</string>
     <string name="proxymode">ProxyMode</string>
     <string name="check_module">check module</string>
@@ -75,5 +75,12 @@
         <item>blacklist</item>
     </string-array>
 
+    <!--UPDATER CORE-->
+    <string name="updater_core">UPDATER CORE</string>
+    <string name="update_mihomo_latest">mihomo has Latest Version</string>
+    <string name="update_available_mihomo">Update available mihomo</string>
+    <string name="update_mihomo_failed">Failed to get repo clash, check ur internet connection</string>
+    <string name="update_mihomo_failed2">failed downloading clash</string>
+    <string name="check_clash">Checking for mihomo</string>
 
 </resources>
